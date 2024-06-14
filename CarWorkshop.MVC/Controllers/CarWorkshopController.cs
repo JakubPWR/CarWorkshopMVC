@@ -6,6 +6,7 @@ using CarWorkshop.Application.CarWorkshop.Queries.GetAllCarWorkshops;
 using CarWorkshop.Application.CarWorkshop.Queries.GetCarWorkshopByEncodedName;
 using CarWorkshop.Application.CarWorkshop.Queries.GetCarWorkshopsByNameList;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
@@ -25,10 +26,12 @@ namespace CarWorkshop.MVC.Controllers
             var carWorkshops = await _mediator.Send(new GetAllCarWorkshopsQuery());
             return View(carWorkshops);
         }
+        [Authorize]
         public IActionResult Create()
         {
             return View();
         }
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Create(CreateCarWorkshopCommand command)
         {

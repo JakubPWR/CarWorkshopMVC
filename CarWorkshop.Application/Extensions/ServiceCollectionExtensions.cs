@@ -1,4 +1,5 @@
-﻿using CarWorkshop.Application.CarWorkshop.Commands.CreateCarWorkshop;
+﻿using CarWorkshop.Application.ApplicationUser;
+using CarWorkshop.Application.CarWorkshop.Commands.CreateCarWorkshop;
 using CarWorkshop.Application.CarWorkshop.Commands.EditCarWorkshop;
 using CarWorkshop.Application.CarWorkshop.Queries.GetAllCarWorkshops;
 using CarWorkshop.Application.CarWorkshop.Queries.GetCarWorkshopsByNameList;
@@ -33,6 +34,8 @@ namespace CarWorkshop.Application.Extensions
             services.AddValidatorsFromAssemblyContaining<EditCarWorkshopCommandValidator>()
                 .AddFluentValidationAutoValidation()
                 .AddFluentValidationClientsideAdapters();
+            services.AddScoped<IUserContext, UserContext>();
+
         }
     }
 }
